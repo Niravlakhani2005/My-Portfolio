@@ -11,7 +11,15 @@ const projects = [
         tags: ["UI/UX Design", "Figma", "Web Design", "Healthcare"],
         link: "https://dribbble.com",
         color: "#3b82f6",
-        image: "/projects/qonaq-real.png",
+        image: "/projects/qonaq-uhd.png",
+    },
+    {
+        title: "Qonaq Health Revamp",
+        description: "Modernized white-theme redesign for Qonaq Health, enhancing visual clarity and user experience.",
+        tags: ["UI Redesign", "Figma", "Design System", "Healthcare"],
+        link: "https://dribbble.com",
+        color: "#10b981",
+        image: "/projects/qonaq_revamp_ai_final.png",
     },
     {
         title: "Luumpa",
@@ -19,7 +27,7 @@ const projects = [
         tags: ["3D Animation", "Figma", "Web Design", "Landing Page"],
         link: "https://dribbble.com",
         color: "#fbbf24",
-        image: "/projects/luumpa-real.png",
+        image: "/projects/luumpa-final.png",
     },
     {
         title: "Cantech",
@@ -27,7 +35,7 @@ const projects = [
         tags: ["Web Design", "Corporate UI", "Figma", "Tech"],
         link: "https://dribbble.com",
         color: "#06b6d4",
-        image: "/projects/cantech-real.png",
+        image: "/projects/cantech-v5-final.png",
     },
     {
         title: "Event Booking App",
@@ -35,7 +43,7 @@ const projects = [
         tags: ["Mobile App", "Figma", "UI/UX", "iOS"],
         link: "https://dribbble.com",
         color: "#f43f5e",
-        image: "/projects/event-booking.png",
+        image: "/projects/event-booking-uhd.png",
     },
     {
         title: "Event Booking Revamp",
@@ -43,7 +51,7 @@ const projects = [
         tags: ["Mobile App", "Redesign", "Figma", "UX Improvement"],
         link: "https://dribbble.com",
         color: "#ec4899",
-        image: "/projects/event-booking-revamp.png",
+        image: "/projects/event-booking-revamp-uhd.png",
     },
 ];
 

@@ -64,7 +64,7 @@ export default function Hero() {
                                 <ArrowRight className="ml-2 w-4 h-4 inline-block group-hover:translate-x-1 transition-transform" />
                             </MagneticButton>
                         </Link>
-                        <Link href="/resume.pdf" target="_blank">
+                        <Link href="/Nirav_Lakhani_Resume.pdf" target="_blank">
                             <MagneticButton className="flex items-center gap-2">
                                 <Download className="w-4 h-4" /> Download Resume
                             </MagneticButton>

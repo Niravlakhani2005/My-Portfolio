@@ -52,8 +52,8 @@ export default function TiltCard({ title, description, tags, link, color, image 
             className="relative h-96 w-full rounded-xl bg-white/5 border border-white/10 backdrop-blur-md"
         >
             <div
-                style={{ transform: "translateZ(75px)", transformStyle: "preserve-3d" }}
-                className="absolute inset-4 rounded-xl bg-deep-space/50 shadow-lg border border-white/5 overflow-hidden"
+                style={{ transform: "translateZ(75px)", transformStyle: "preserve-3d", backfaceVisibility: "hidden" }}
+                className="absolute inset-4 rounded-xl bg-deep-space shadow-2xl border border-white/20 overflow-hidden"
             >
                 {/* Background Image */}
                 {image && (
@@ -63,9 +63,10 @@ export default function TiltCard({ title, description, tags, link, color, image 
                             alt={title}
                             fill
                             unoptimized
-                            className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                            className="object-cover object-top"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-deep-space via-deep-space/90 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-deep-space via-deep-space/90 to-transparent mix-blend-multiply opacity-60" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-deep-space via-transparent to-transparent" />
                     </div>
                 )}
                 {/* Gradient glow/Spotlight effect */}
