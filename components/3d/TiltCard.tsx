@@ -94,10 +94,7 @@ export default function TiltCard({ title, description, tags, link, color, image 
             </div>
 
             {/* Decorative elements */}
-            <div
-                className="absolute -top-10 -right-10 w-20 h-20 rounded-full blur-xl opacity-50 pointer-events-none"
-                style={{ backgroundColor: color, transform: "translateZ(-50px)" }}
-            />
+
         </motion.div >
     );
 }
