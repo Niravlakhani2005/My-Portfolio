@@ -17,7 +17,7 @@ const CLIENTS = [
 
 export default function ClientLogos() {
     return (
-        <section className="w-full py-24 relative overflow-hidden bg-deep-space/50 md:py-32">
+        <section className="w-full py-16 md:py-24 relative overflow-hidden bg-deep-space/50">
             <div className="max-w-7xl mx-auto px-4 md:px-8">
                 <SectionHeading
                     number="03"
@@ -34,7 +34,7 @@ export default function ClientLogos() {
                     <motion.div
                         className="flex gap-16 items-center min-w-full"
                         animate={{ x: ["0%", "-50%"] }}
-                        transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
+                        transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
                     >
                         {[...CLIENTS, ...CLIENTS, ...CLIENTS, ...CLIENTS].map((client, i) => (
                             <div

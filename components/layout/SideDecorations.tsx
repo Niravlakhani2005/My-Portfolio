@@ -92,16 +92,16 @@ export default function SideDecorations() {
 
                     {/* Socials */}
                     <div className="flex flex-col gap-5 pb-2">
-                        <Link href="https://linkedin.com/in/niravlakhani" target="_blank" className="text-white/40 hover:text-white hover:scale-110 transition-all duration-300">
+                        <Link href="https://www.linkedin.com/in/nirav-lakhani2005/" target="_blank" className="text-white/50 hover:text-white hover:scale-110 transition-all duration-300">
                             <Linkedin className="w-5 h-5" />
                         </Link>
-                        <Link href="https://behance.net/niravlakhani" target="_blank" className="text-white/40 hover:text-white hover:scale-110 transition-all duration-300">
-                            <Palette className="w-5 h-5" />
-                        </Link>
-                        <Link href="https://dribbble.com/niravlakhani" target="_blank" className="text-white/40 hover:text-white hover:scale-110 transition-all duration-300">
+                        <Link href="https://dribbble.com/nirav_2005" target="_blank" className="text-white/50 hover:text-white hover:scale-110 transition-all duration-300">
                             <Dribbble className="w-5 h-5" />
                         </Link>
-                        <Link href="mailto:nirav@example.com" className="text-white/40 hover:text-white hover:scale-110 transition-all duration-300">
+                        <Link href="https://www.behance.net/niravlakhani2" target="_blank" className="text-white/50 hover:text-white hover:scale-110 transition-all duration-300">
+                            <Palette className="w-5 h-5" />
+                        </Link>
+                        <Link href="mailto:niravlakhani2125@gmail.com" className="text-white/50 hover:text-white hover:scale-110 transition-all duration-300">
                             <Mail className="w-5 h-5" />
                         </Link>
                     </div>

@@ -9,10 +9,30 @@ const CREDIBILITY_CHIPS = ["User Research", "Wireframing", "Design Systems"];
 
 export default function Hero() {
     return (
-        <section className="relative min-h-screen flex flex-col justify-center z-30 overflow-hidden pt-20">
+        <section className="relative min-h-screen flex flex-col z-30 overflow-hidden pt-48">
             {/* Background Gradients */}
             <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-cyber-purple/20 rounded-full blur-[120px] pointer-events-none -translate-x-1/2 -translate-y-1/2" />
             <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-electric-blue/10 rounded-full blur-[120px] pointer-events-none translate-x-1/2 translate-y-1/2" />
+
+            {/* Grid Pattern */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+
+            {/* Scroll Indicator */}
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1, duration: 1 }}
+                className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 pointer-events-none"
+            >
+                <span className="text-xs font-mono text-white/40 uppercase tracking-widest">Scroll</span>
+                <div className="w-5 h-8 border-2 border-white/20 rounded-full flex justify-center p-1">
+                    <motion.div
+                        animate={{ y: [0, 6, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                        className="w-1 h-2 bg-white/40 rounded-full"
+                    />
+                </div>
+            </motion.div>
 
             <div className="max-w-7xl mx-auto px-4 md:px-8 w-full">
                 <div className="max-w-4xl">
@@ -49,7 +69,7 @@ export default function Hero() {
                         transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
                         className="max-w-2xl text-lg md:text-xl text-white/60 leading-relaxed font-body"
                     >
-                        I design clean, user-friendly experiences with research, wireframes, and high-fidelity UI.
+                        I design digital experiences that make sense the first time — so users don’t have to guess, click around, or wonder “what just happened?”
                     </motion.p>
 
                     <motion.div

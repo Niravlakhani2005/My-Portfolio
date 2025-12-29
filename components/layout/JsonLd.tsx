@@ -4,9 +4,11 @@ export default function JsonLd() {
         "@type": "Person",
         name: "Nirav Lakhani",
         url: "https://niravlakhani.design",
-        sameAs: [
-            "https://linkedin.com/in/niravlakhani",
-            "https://behance.net/niravlakhani",
+        "sameAs": [
+            "https://www.linkedin.com/in/nirav-lakhani2005/",
+            "https://dribbble.com/nirav_2005",
+            "https://www.behance.net/niravlakhani2",
+            "https://www.youtube.com/@Niravlakhani"
         ],
         jobTitle: "UI/UX Designer",
         worksFor: {

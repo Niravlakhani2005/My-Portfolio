@@ -88,7 +88,7 @@ export default function YouTubeFeed() {
     }, []);
 
     return (
-        <section className="py-32 relative z-30" id="creativity">
+        <section className="py-16 md:py-24 relative z-30" id="creativity">
             <div className="max-w-7xl mx-auto px-4 md:px-8">
                 <div className="mb-16">
                     <SectionHeading
