@@ -32,9 +32,9 @@ export default function ClientLogos() {
 
                 <div className="flex gap-16 items-center whitespace-nowrap min-w-full group">
                     <motion.div
-                        className="flex gap-16 items-center min-w-full"
+                        className="flex gap-16 items-center w-max"
                         animate={{ x: ["0%", "-50%"] }}
-                        transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
+                        transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
                     >
                         {[...CLIENTS, ...CLIENTS, ...CLIENTS, ...CLIENTS].map((client, i) => (
                             <div
