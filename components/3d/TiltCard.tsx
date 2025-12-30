@@ -16,8 +16,9 @@ export default function TiltCard({ title, description, tags, link, color, image 
     const x = useMotionValue(0);
     const y = useMotionValue(0);
 
-    const xSpring = useSpring(x);
-    const ySpring = useSpring(y);
+    const springConfig = { stiffness: 300, damping: 30, mass: 0.5 };
+    const xSpring = useSpring(x, springConfig);
+    const ySpring = useSpring(y, springConfig);
 
     const transform = useMotionTemplate`rotateX(${xSpring}deg) rotateY(${ySpring}deg)`;
 
@@ -28,11 +29,11 @@ export default function TiltCard({ title, description, tags, link, color, image 
         const width = rect.width;
         const height = rect.height;
 
-        const mouseX = (e.clientX - rect.left) * ROTATION_RANGE;
-        const mouseY = (e.clientY - rect.top) * ROTATION_RANGE;
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
 
-        const rX = (mouseY / height - HALF_ROTATION_RANGE) * -1;
-        const rY = mouseX / width - HALF_ROTATION_RANGE;
+        const rX = ((mouseY / height) - 0.5) * ROTATION_RANGE * -1;
+        const rY = ((mouseX / width) - 0.5) * ROTATION_RANGE;
 
         x.set(rX);
         y.set(rY);
