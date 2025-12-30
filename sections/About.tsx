@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import SectionHeading from "@/components/ui/SectionHeading";
 import InfiniteSkills from "@/components/ui/InfiniteSkills";
+import { tools } from "@/data/skills";
 
 export default function About() {
     return (
@@ -49,19 +50,39 @@ export default function About() {
                         </h4>
 
                         <div className="flex flex-wrap gap-3">
-                            {[
-                                "Figma", "Adobe XD", "Prototyping",
-                                "User Research", "Wireframing", "UI Design",
-                                "Interaction Design", "Mobile Apps", "Web Design",
-                                "Design Systems", "Usability Testing"
-                            ].map((skill, i) => (
-                                <span
-                                    key={i}
-                                    className="px-4 py-2 text-sm text-white/80 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-white/20 transition-colors cursor-default"
-                                >
-                                    {skill}
-                                </span>
-                            ))}
+                            {tools.map((skill, i) => {
+                                // Dynamic color style for hover
+                                const hoverStyle = {
+                                    "--skill-color": skill.color,
+                                } as React.CSSProperties;
+
+                                return (
+                                    <div
+                                        key={i}
+                                        style={hoverStyle}
+                                        className="group relative flex items-center gap-2 px-4 py-2 text-sm text-white/80 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-[var(--skill-color)] hover:text-[var(--skill-color)] hover:shadow-[0_0_15px_var(--skill-color)] transition-all duration-300 cursor-default"
+                                    >
+                                        <div className="w-4 h-4 flex items-center justify-center transition-colors group-hover:text-[var(--skill-color)]">
+                                            {/* Handle SimpleIcons (object with svg) vs Lucide Icons (component) */}
+                                            {/* @ts-ignore */}
+                                            {skill.icon.svg ? (
+                                                <div
+                                                    // @ts-ignore
+                                                    dangerouslySetInnerHTML={{ __html: skill.icon.svg }}
+                                                    className="w-full h-full fill-current"
+                                                />
+                                            ) : (
+                                                // @ts-ignore
+                                                <skill.icon className="w-full h-full" />
+                                            )}
+                                        </div>
+                                        <span>{skill.name}</span>
+
+                                        {/* Glow effect */}
+                                        <div className="absolute inset-0 rounded-full bg-[var(--skill-color)] opacity-0 group-hover:opacity-10 blur-md transition-opacity duration-300" />
+                                    </div>
+                                );
+                            })}
                         </div>
                     </motion.div>
                 </div>

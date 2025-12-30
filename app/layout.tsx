@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Manrope } from "next/font/google";
 import "./globals.css";
-import Starfield from "@/components/ui/Starfield";
+import GalaxyBackground from "@/components/ui/GalaxyBackground";
+import BackgroundFX from "@/components/ui/BackgroundFX";
+import GlowCursor from "@/components/ui/GlowCursor";
+
 import JsonLd from "@/components/layout/JsonLd";
 import SideDecorations from "@/components/layout/SideDecorations";
-import CursorGlow from "@/components/ui/CursorGlow";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -37,10 +39,10 @@ export default function RootLayout({
         className={`${spaceGrotesk.variable} ${manrope.variable} antialiased overflow-x-hidden bg-deep-space text-foreground selection:bg-cyber-purple selection:text-white`}
       >
         <JsonLd />
-        <Starfield />
+        <GalaxyBackground />
+        <BackgroundFX />
+        <GlowCursor />
         <SideDecorations />
-        <CursorGlow />
-        <div className="relative z-10 noise-overlay" />
         <main className="relative z-20 flex flex-col min-h-screen">
           {children}
         </main>
