@@ -5,10 +5,10 @@ import Image from "next/image";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 const CLIENTS = [
-    { name: "Devxdigi", logo: "/clients/devxdigi.png" },
-    { name: "Luumpa", logo: "/clients/luumpa.png" },
     { name: "Qonaq Health", logo: "/clients/qonaq.png" },
     { name: "Suso Tech", logo: "/clients/suso.png" },
+    { name: "Devxdigi", logo: "/clients/devxdigi.png" },
+    { name: "Luumpa", logo: "/clients/luumpa.png" },
     { name: "Driptionary", logo: "/clients/driptionary.png" },
     { name: "Pratyaksh Ayurveda", logo: "/clients/pratyaksh.png" },
     { name: "Mediways", logo: "/clients/mediways.png" },
