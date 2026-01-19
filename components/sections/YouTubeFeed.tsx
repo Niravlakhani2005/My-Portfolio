@@ -92,7 +92,7 @@ export default function YouTubeFeed() {
             <div className="max-w-7xl mx-auto px-4 md:px-8">
                 <div className="mb-16">
                     <SectionHeading
-                        number="03"
+                        number="04"
                         title="Beyond Design"
                         subtitle="My creative playground in vlogging & filmmaking"
                         className="mb-8"

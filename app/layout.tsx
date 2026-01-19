@@ -34,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${spaceGrotesk.variable} ${manrope.variable} antialiased overflow-x-hidden bg-deep-space text-foreground selection:bg-cyber-purple selection:text-white`}
       >

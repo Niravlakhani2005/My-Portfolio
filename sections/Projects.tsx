@@ -60,7 +60,7 @@ export default function Projects() {
         <section className="py-16 md:py-24 relative z-30" id="projects">
             <div className="max-w-7xl mx-auto px-4 md:px-8">
                 <SectionHeading
-                    number="02"
+                    number="03"
                     title="Selected Work"
                     subtitle="Case studies of recent product designs"
                     className="mb-8"
