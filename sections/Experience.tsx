@@ -83,13 +83,7 @@ function ExperienceCard({ exp, index }: { exp: typeof experiences[0]; index: num
     };
 
     return (
-        <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7, delay: index * 0.2 }}
-            className="relative pl-8 md:pl-16 group/timeline"
-        >
+        <div className="relative pl-8 md:pl-16 group/timeline">
             {/* Timeline Dot & Connector - Outside the 3D card context */}
             <div className="absolute left-[2px] top-8 flex flex-col items-center h-full">
                 {/* Dot */}
@@ -197,7 +191,7 @@ function ExperienceCard({ exp, index }: { exp: typeof experiences[0]; index: num
                     style={{ transitionDuration: '1s' }}
                 />
             </motion.div>
-        </motion.div>
+        </div>
     );
 }
 
@@ -206,7 +200,6 @@ export default function Experience() {
         <section className="py-24 md:py-32 relative z-30 overflow-hidden" id="experience">
             <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
                 <SectionHeading
-                    number="02"
                     title="Experience"
                     subtitle="Professional journey & milestones"
                     className="mb-16 md:mb-24"

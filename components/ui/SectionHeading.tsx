@@ -3,22 +3,15 @@
 import { motion } from "framer-motion";
 
 interface SectionHeadingProps {
-    number: string;
     title: string;
     subtitle?: string;
     className?: string;
 }
 
-export default function SectionHeading({ number, title, subtitle, className = "" }: SectionHeadingProps) {
+export default function SectionHeading({ title, subtitle, className = "" }: SectionHeadingProps) {
     return (
         <div className={`relative mb-16 ${className}`}>
             <div className="flex items-center gap-6 mb-0 select-none pointer-events-none">
-                <span className="text-8xl md:text-9xl font-display font-bold text-white/20 select-none tracking-tighter transition-all duration-300 group-hover:text-white/30" style={{
-                    lineHeight: 0.8,
-                    textShadow: "0 0 20px rgba(255,255,255,0.1)"
-                }}>
-                    {number}
-                </span>
                 <div className="h-px bg-gradient-to-r from-white/10 to-transparent w-32 md:w-48 mt-4" />
             </div>
 

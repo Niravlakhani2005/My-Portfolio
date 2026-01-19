@@ -1,10 +1,12 @@
 import Hero from "@/sections/Hero";
 import About from "@/sections/About";
-import Experience from "@/sections/Experience";
-import Projects from "@/sections/Projects";
-import ClientLogos from "@/components/ui/ClientLogos";
-import YouTubeFeed from "@/components/sections/YouTubeFeed";
-import Contact from "@/sections/Contact";
+import dynamic from "next/dynamic";
+
+const Experience = dynamic(() => import("@/sections/Experience"));
+const Projects = dynamic(() => import("@/sections/Projects"));
+const ClientLogos = dynamic(() => import("@/components/ui/ClientLogos"));
+const YouTubeFeed = dynamic(() => import("@/components/sections/YouTubeFeed"));
+const Contact = dynamic(() => import("@/sections/Contact"));
 
 export default function Home() {
   return (

@@ -8,7 +8,7 @@ import * as random from "maath/random/dist/maath-random.esm";
 function Stars(props: any) {
     const ref = useRef<any>(null);
     const sphere = useMemo(() => {
-        const data = new Float32Array(5000 * 3);
+        const data = new Float32Array(2500 * 3);
         // @ts-ignore
         return random.inSphere(data, { radius: 1.2 }) as Float32Array;
     }, []);
@@ -39,7 +39,7 @@ function Stars(props: any) {
 export default function GalaxyBackground() {
     return (
         <div className="fixed inset-0 z-[-50] bg-[#050505]">
-            <Canvas camera={{ position: [0, 0, 1] }}>
+            <Canvas camera={{ position: [0, 0, 1] }} dpr={[1, 2]} gl={{ antialias: false }}>
                 <Stars />
             </Canvas>
         </div>

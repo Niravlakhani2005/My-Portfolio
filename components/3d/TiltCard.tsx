@@ -22,15 +22,22 @@ export default function TiltCard({ title, description, tags, link, color, image 
 
     const transform = useMotionTemplate`rotateX(${xSpring}deg) rotateY(${ySpring}deg)`;
 
+    const rectRef = useRef<DOMRect | null>(null);
+
+    const handleMouseEnter = () => {
+        if (ref.current) {
+            rectRef.current = ref.current.getBoundingClientRect();
+        }
+    };
+
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (!ref.current) return;
+        if (!rectRef.current) return;
 
-        const rect = ref.current.getBoundingClientRect();
-        const width = rect.width;
-        const height = rect.height;
+        const width = rectRef.current.width;
+        const height = rectRef.current.height;
 
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
+        const mouseX = e.clientX - rectRef.current.left;
+        const mouseY = e.clientY - rectRef.current.top;
 
         const rX = ((mouseY / height) - 0.5) * ROTATION_RANGE * -1;
         const rY = ((mouseX / width) - 0.5) * ROTATION_RANGE;
@@ -42,11 +49,13 @@ export default function TiltCard({ title, description, tags, link, color, image 
     const handleMouseLeave = () => {
         x.set(0);
         y.set(0);
+        rectRef.current = null;
     };
 
     return (
         <motion.div
             ref={ref}
+            onMouseEnter={handleMouseEnter}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             style={{ transformStyle: "preserve-3d", transform }}
@@ -63,7 +72,6 @@ export default function TiltCard({ title, description, tags, link, color, image 
                             src={image}
                             alt={title}
                             fill
-                            unoptimized
                             className="object-cover object-top"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-deep-space via-deep-space/90 to-transparent mix-blend-multiply opacity-60" />

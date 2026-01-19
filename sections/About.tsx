@@ -10,7 +10,6 @@ export default function About() {
         <section className="py-16 md:py-24 relative z-30" id="about">
             <div className="max-w-7xl mx-auto px-4 md:px-8">
                 <SectionHeading
-                    number="01"
                     title="About"
                     subtitle="Background and what drives my work"
                     className="mb-16"

@@ -55,7 +55,6 @@ export default function Contact() {
                         transition={{ duration: 0.8 }}
                     >
                         <SectionHeading
-                            number="05"
                             title="Contact"
                             subtitle="Looking for a designer to lead your next project?"
                         />
