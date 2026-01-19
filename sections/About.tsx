@@ -63,15 +63,15 @@ export default function About() {
                                     >
                                         <div className="w-4 h-4 flex items-center justify-center transition-colors group-hover:text-[var(--skill-color)]">
                                             {/* Handle SimpleIcons (object with svg) vs Lucide Icons (component) */}
-                                            {/* @ts-ignore */}
+                                            {/* @ts-expect-error: SVG existence check on union type */}
                                             {skill.icon.svg ? (
                                                 <div
-                                                    // @ts-ignore
+                                                    // @ts-expect-error: SVG string is safe from data source
                                                     dangerouslySetInnerHTML={{ __html: skill.icon.svg }}
                                                     className="w-full h-full fill-current"
                                                 />
                                             ) : (
-                                                // @ts-ignore
+                                                // @ts-expect-error: Dynamic icon component usage
                                                 <skill.icon className="w-full h-full" />
                                             )}
                                         </div>

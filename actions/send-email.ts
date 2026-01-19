@@ -11,7 +11,17 @@ const contactSchema = z.object({
     message: z.string().min(10, "Message must be at least 10 characters"),
 });
 
-export async function sendEmail(prevState: any, formData: FormData) {
+interface ContactState {
+    success: boolean;
+    message?: string;
+    errors?: {
+        name?: string[];
+        email?: string[];
+        message?: string[];
+    };
+}
+
+export async function sendEmail(prevState: ContactState, formData: FormData) {
     const data = {
         name: formData.get("name"),
         email: formData.get("email"),
@@ -40,7 +50,7 @@ export async function sendEmail(prevState: any, formData: FormData) {
         });
 
         return { success: true, message: "Email sent successfully!" };
-    } catch (error) {
+    } catch {
         return { success: false, message: "Failed to send email." };
     }
 }

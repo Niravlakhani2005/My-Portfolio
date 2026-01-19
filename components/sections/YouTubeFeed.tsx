@@ -71,7 +71,7 @@ export default function YouTubeFeed() {
                 const data = await res.json();
 
                 if (data.items) {
-                    const fetchedVideos = data.items.map((item: any) => ({
+                    const fetchedVideos = data.items.map((item: { id: { videoId: string }; snippet: { title: string; thumbnails: { high: { url: string } } } }) => ({
                         id: item.id.videoId,
                         title: item.snippet.title,
                         thumbnail: item.snippet.thumbnails.high.url,
@@ -92,7 +92,6 @@ export default function YouTubeFeed() {
             <div className="max-w-7xl mx-auto px-4 md:px-8">
                 <div className="mb-16">
                     <SectionHeading
-                        number="04"
                         title="Beyond Design"
                         subtitle="My creative playground in vlogging & filmmaking"
                         className="mb-8"
@@ -100,7 +99,7 @@ export default function YouTubeFeed() {
 
                     <div className="max-w-2xl text-white/60">
                         <p className="text-lg leading-relaxed">
-                            When I'm not crafting pixels, I'm capturing moments.
+                            When I&apos;m not crafting pixels, I&apos;m capturing moments.
                             Here is a glimpse into my life through lenses—travel, stories, and a bit of comedy.
                         </p>
                         <Link
@@ -180,6 +179,6 @@ export default function YouTubeFeed() {
                     </div>
                 </div>
             </div>
-        </section>
+        </section >
     );
 }

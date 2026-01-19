@@ -60,9 +60,9 @@ export default function Contact() {
                         />
 
                         <div className="mt-8">
-                            <h3 className="text-2xl font-display font-medium text-white mb-4">Let's build something exceptional.</h3>
+                            <h3 className="text-2xl font-display font-medium text-white mb-4">Let&apos;s build something exceptional.</h3>
                             <p className="text-white/60 text-lg leading-relaxed max-w-md">
-                                I'm currently available for freelance projects and open to discussing new opportunities.
+                                I&apos;m currently available for freelance projects and open to discussing new opportunities.
                             </p>
 
                             <div className="flex flex-wrap gap-3 mt-8">

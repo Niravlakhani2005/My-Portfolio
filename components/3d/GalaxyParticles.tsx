@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useState, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -8,8 +8,9 @@ export default function GalaxyParticles() {
     const mesh = useRef<THREE.Points>(null);
     const count = 3000;
 
-    // Generate particles with galaxy-like colors
-    const { positions, colors } = useMemo(() => {
+    const [data, setData] = useState<{ positions: Float32Array; colors: Float32Array } | null>(null);
+
+    useEffect(() => {
         const positions = new Float32Array(count * 3);
         const colors = new Float32Array(count * 3);
         const colorPalette = [
@@ -45,7 +46,8 @@ export default function GalaxyParticles() {
             colors[i * 3 + 1] = color.g;
             colors[i * 3 + 2] = color.b;
         }
-        return { positions, colors };
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setData({ positions, colors });
     }, []);
 
     useFrame((state, delta) => {
@@ -54,6 +56,9 @@ export default function GalaxyParticles() {
         mesh.current.rotation.y += delta * 0.05;
         mesh.current.rotation.x += delta * 0.02;
     });
+
+    if (!data) return null;
+    const { positions, colors } = data;
 
     return (
         <points ref={mesh}>

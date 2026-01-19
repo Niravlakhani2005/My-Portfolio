@@ -6,7 +6,7 @@ import { PenTool, Figma, Layout, Palette, MousePointer, Linkedin, Dribbble, Mail
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-const TechIcon = ({ icon: Icon, label, delay, color }: { icon: any; label: string; delay: number; color: string }) => (
+const TechIcon = ({ icon: Icon, label, delay, color }: { icon: React.ComponentType<{ className?: string }>; label: string; delay: number; color: string }) => (
     <motion.div
         className="relative group cursor-pointer"
         initial={{ y: 0 }}

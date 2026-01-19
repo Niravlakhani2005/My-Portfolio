@@ -20,7 +20,6 @@ export default function ClientLogos() {
         <section className="w-full py-16 md:py-24 relative overflow-hidden bg-deep-space/50">
             <div className="max-w-7xl mx-auto px-4 md:px-8">
                 <SectionHeading
-                    number="03"
                     title="Clients"
                     subtitle="Trusted by innovative teams worldwide"
                     className="mb-8"

@@ -4,12 +4,13 @@ import { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
 import * as random from "maath/random/dist/maath-random.esm";
+import * as THREE from "three";
 
-function Stars(props: any) {
-    const ref = useRef<any>(null);
+function Stars(props: React.ComponentProps<typeof Points>) {
+    const ref = useRef<THREE.Points>(null);
     const sphere = useMemo(() => {
         const data = new Float32Array(2500 * 3);
-        // @ts-ignore
+
         return random.inSphere(data, { radius: 1.2 }) as Float32Array;
     }, []);
 

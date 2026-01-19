@@ -107,7 +107,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                     {/* Final Outcome / Callout */}
                     <section className="p-8 rounded-2xl bg-gradient-to-br from-white/10 to-transparent border border-white/10 text-center">
                         <h2 className="text-2xl font-bold text-white mb-4">Outcome</h2>
-                        <p className="text-white/80 text-lg italic">"{project.impact}"</p>
+                        <p className="text-white/80 text-lg italic">&quot;{project.impact}&quot;</p>
                     </section>
                 </div>
 
@@ -115,7 +115,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                     <h3 className="text-white mb-6">Want to see more details?</h3>
                     <Link href="#contact">
                         <MagneticButton className="bg-white text-black font-bold">
-                            Let's Talk
+                            Let&apos;s Talk
                         </MagneticButton>
                     </Link>
                 </div>
