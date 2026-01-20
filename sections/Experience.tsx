@@ -33,7 +33,7 @@ const experiences = [
         color: "#a78bfa", // Purple
     },
     {
-        role: "Web Design Intern",
+        role: "UI/UX Internship",
         company: "Hyvikk Solutions",
         location: "Bhavnagar",
         period: "July 2022",
