@@ -40,7 +40,7 @@ export default function ClientLogos() {
                                 key={i}
                                 className="relative group/logo cursor-pointer transition-transform duration-300 hover:scale-110"
                             >
-                                <div className="relative h-20 w-auto min-w-[180px] flex items-center justify-center grayscale hover:grayscale-0 brightness-0 invert hover:brightness-100 hover:invert-0 transition-all duration-300 opacity-60 hover:opacity-100">
+                                <div className={`relative h-20 w-auto min-w-[180px] flex items-center justify-center grayscale hover:grayscale-0 brightness-0 invert hover:brightness-100 transition-all duration-300 opacity-60 hover:opacity-100 ${client.name === "Driptionary" ? "hover:invert" : "hover:invert-0"}`}>
                                     <Image
                                         src={client.logo}
                                         alt={client.name}
