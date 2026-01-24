@@ -26,7 +26,6 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-hook-form": "^7.69.0",
-    "resend": "^6.6.0",
     "simple-icons": "^16.3.0",
     "tailwind-merge": "^3.4.0",
     "three": "^0.182.0",

@@ -1,9 +1,7 @@
 "use server";
 
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 import { z } from "zod";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 const contactSchema = z.object({
     name: z.string().min(2, "Name is required"),
@@ -35,22 +33,37 @@ export async function sendEmail(prevState: ContactState, formData: FormData) {
     }
 
     try {
-        if (!process.env.RESEND_API_KEY) {
-            console.warn("No Resend API Key found. Simulating email send.");
-            await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate delay
-            return { success: true, message: "Email simulated (No API Key)" };
+        if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+            console.warn("No Gmail credentials found. Cannot send email.");
+            return { success: false, message: "Server misconfiguration: missing email credentials." };
         }
 
-        await resend.emails.send({
-            from: "Portfolio Contact <onboarding@resend.dev>",
-            to: "nirav@example.com", // Replace with actual email or env var
+        const transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+                user: process.env.GMAIL_USER,
+                pass: process.env.GMAIL_APP_PASSWORD,
+            },
+        });
+
+        await transporter.sendMail({
+            from: process.env.GMAIL_USER, // Sender address
+            to: process.env.GMAIL_USER, // List of receivers (sending to self)
+            replyTo: result.data.email, // Reply to the user's email
             subject: `New Message from ${result.data.name}`,
-            text: result.data.message,
-            replyTo: result.data.email as string,
+            text: `Name: ${result.data.name}\nEmail: ${result.data.email}\n\nMessage:\n${result.data.message}`,
+            html: `
+                <h3>New Contact Form Submission</h3>
+                <p><strong>Name:</strong> ${result.data.name}</p>
+                <p><strong>Email:</strong> ${result.data.email}</p>
+                <p><strong>Message:</strong></p>
+                <p>${result.data.message.replace(/\n/g, '<br>')}</p>
+            `,
         });
 
         return { success: true, message: "Email sent successfully!" };
-    } catch {
+    } catch (error) {
+        console.error("Error sending email:", error);
         return { success: false, message: "Failed to send email." };
     }
 }
