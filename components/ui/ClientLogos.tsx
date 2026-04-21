@@ -19,7 +19,7 @@ export default function ClientLogos() {
         <div className="w-full relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 md:px-8 mb-8">
                 <p className="text-xs font-mono text-white/40 uppercase tracking-widest text-center">
-                    Worked With
+                    Trusted By
                 </p>
             </div>
 
