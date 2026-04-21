@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import MagneticButton from "@/components/ui/MagneticButton";
 import { ArrowRight, Download, FileText } from "lucide-react";
 import Link from "next/link";
+import ClientLogos from "@/components/ui/ClientLogos";
 
 const CREDIBILITY_CHIPS = ["User Research", "Wireframing", "Design Systems"];
 
@@ -17,24 +18,7 @@ export default function Hero() {
             {/* Grid Pattern */}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
 
-            {/* Scroll Indicator */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1, duration: 1 }}
-                className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 pointer-events-none"
-            >
-                <span className="text-xs font-mono text-white/40 uppercase tracking-widest">Scroll</span>
-                <div className="w-5 h-8 border-2 border-white/20 rounded-full flex justify-center p-1">
-                    <motion.div
-                        animate={{ y: [0, 6, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                        className="w-1 h-2 bg-white/40 rounded-full"
-                    />
-                </div>
-            </motion.div>
-
-            <div className="max-w-7xl mx-auto px-4 md:px-8 w-full">
+            <div className="max-w-7xl mx-auto px-4 md:px-8 w-full flex-grow flex flex-col justify-center">
                 <div className="max-w-4xl">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -92,6 +76,28 @@ export default function Hero() {
                     </motion.div>
                 </div>
             </div>
+
+            {/* Client Logos Section */}
+            <div className="w-full relative z-20 pb-12 mt-16 md:mt-24">
+                <ClientLogos />
+            </div>
+
+            {/* Scroll Indicator */}
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1, duration: 1 }}
+                className="hidden md:flex flex-col items-center gap-2 pointer-events-none pb-8"
+            >
+                <span className="text-xs font-mono text-white/40 uppercase tracking-widest">Scroll</span>
+                <div className="w-5 h-8 border-2 border-white/20 rounded-full flex justify-center p-1">
+                    <motion.div
+                        animate={{ y: [0, 6, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                        className="w-1 h-2 bg-white/40 rounded-full"
+                    />
+                </div>
+            </motion.div>
         </section>
     );
 }
