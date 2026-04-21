@@ -31,23 +31,17 @@ const TiltImage = ({ src, alt }: { src: string; alt: string }) => {
     };
 
     return (
-        <div style={{ perspective: "1200px" }} className="w-full h-full">
+        <div style={{ perspective: "1200px" }} className="w-full">
             <motion.div
                 style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
-                className="relative w-full h-full rounded-2xl p-2 bg-[#0f1115] border border-white/10 shadow-2xl transition-colors hover:border-cyber-purple/30 group"
+                className="relative w-full rounded-2xl p-2 bg-[#0f1115] border border-white/10 shadow-2xl hover:border-cyber-purple/30 transition-colors duration-300 group"
             >
-                {/* Glow behind the image on hover */}
-                <div 
-                    style={{ transform: "translateZ(-20px)" }}
-                    className="absolute inset-0 bg-cyber-purple/0 group-hover:bg-cyber-purple/20 blur-2xl transition-colors duration-500 rounded-full"
-                />
-                
-                {/* Image layer popped out */}
-                <div style={{ transform: "translateZ(40px)" }} className="relative z-10 w-full h-full">
-                    <img src={src} alt={alt} className="w-full h-full object-cover rounded-xl border border-white/5" />
-                </div>
+                {/* Subtle purple glow ring on hover */}
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[inset_0_0_40px_rgba(168,85,247,0.08)]" />
+                {/* Image at its natural height — no crop, no stretch, no blur */}
+                <img src={src} alt={alt} className="w-full h-auto rounded-xl border border-white/5 block" />
             </motion.div>
         </div>
     );
@@ -60,14 +54,14 @@ export default function VoxCraftCaseStudy() {
     };
 
     return (
-        <article className="relative max-w-7xl mx-auto px-4 md:px-8 z-10">
+        <article className="relative max-w-4xl mx-auto px-4 md:px-8 z-10">
             {/* Background elements to match the site theme */}
             <div className="fixed top-0 left-0 w-[600px] h-[600px] bg-cyber-purple/10 rounded-full blur-[120px] pointer-events-none -translate-x-1/2 -translate-y-1/2 z-[-1]" />
             <div className="fixed bottom-0 right-0 w-[600px] h-[600px] bg-purple-500/5 rounded-full blur-[120px] pointer-events-none translate-x-1/2 translate-y-1/2 z-[-1]" />
             <div className="fixed inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none z-[-2]" />
 
             {/* Header / Hero */}
-            <header className="max-w-4xl mx-auto mb-20">
+            <header className="mb-20">
                 <Link href="/" className="inline-flex items-center text-white/50 hover:text-white mb-12 transition-colors group">
                     <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
                     Back to Home
@@ -89,7 +83,7 @@ export default function VoxCraftCaseStudy() {
             </header>
 
             {/* Content Body */}
-            <div className="max-w-3xl mx-auto font-body space-y-20 text-white/80 text-lg leading-relaxed">
+            <div className="font-body space-y-16 text-white/80 text-lg leading-relaxed">
                 
                 <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
                     <h2 className="text-3xl font-display font-bold text-white mb-6">The Idea</h2>
@@ -120,16 +114,16 @@ export default function VoxCraftCaseStudy() {
                         You can literally just describe your idea using voice or text. VoxCraft takes that prompt, supports multiple languages (English, Hindi, and Gujarati), and spits out clean HTML and Tailwind CSS.
                     </p>
 
-                    <div className="w-[100vw] relative left-1/2 -translate-x-1/2 max-w-6xl px-4 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6 my-10">
-                        <div className="space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-10">
+                        <div className="space-y-3">
                             <TiltImage src="/English.png" alt="English UI generation" />
                             <p className="text-sm text-center text-white/50 font-mono">English Prompt</p>
                         </div>
-                        <div className="space-y-4">
+                        <div className="space-y-3">
                             <TiltImage src="/Hindi.png" alt="Hindi UI generation" />
                             <p className="text-sm text-center text-white/50 font-mono">Hindi Prompt</p>
                         </div>
-                        <div className="space-y-4">
+                        <div className="space-y-3">
                             <TiltImage src="/Gujarati.png" alt="Gujarati UI generation" />
                             <p className="text-sm text-center text-white/50 font-mono">Gujarati Prompt</p>
                         </div>
