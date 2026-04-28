@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useRef, useState } from "react";
-import { motion, useMotionTemplate, useMotionValue, useSpring } from "framer-motion";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 import SectionHeading from "@/components/ui/SectionHeading";
-import { Briefcase, Calendar, MapPin } from "lucide-react";
+import { MapPin, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const experiences = [
@@ -23,8 +23,8 @@ const experiences = [
         role: "UI/UX Internship",
         company: "Cantech Networks",
         location: "Bhavnagar",
-        period: "May 2024 - June 2024", // Merged for display or keep detailed? Keeping detailed as per resume
-        periodDetail: "May 2024 - June 2024, May 2025 - June 2025",
+        period: "May 2024 - June 2024",
+        periodDetail: "May 2024 - June 2024\nMay 2025 - June 2025",
         description: [
             "Conducted usability testing and refined interfaces based on user feedback and product requirements.",
             "Designed wireframes and interactive prototypes to support faster and smoother development handoff.",
@@ -45,153 +45,65 @@ const experiences = [
     },
 ];
 
-const ROTATION_RANGE = 20;
-
-function ExperienceCard({ exp, index }: { exp: typeof experiences[0]; index: number }) {
-    const ref = useRef<HTMLDivElement>(null);
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
+function ExperienceRow({ exp, index }: { exp: typeof experiences[0]; index: number }) {
     const [isHovered, setIsHovered] = useState(false);
 
-    const springConfig = { stiffness: 300, damping: 30, mass: 0.5 };
-    const xSpring = useSpring(x, springConfig);
-    const ySpring = useSpring(y, springConfig);
-
-    const transform = useMotionTemplate`rotateX(${xSpring}deg) rotateY(${ySpring}deg)`;
-
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (!ref.current) return;
-
-        const rect = ref.current.getBoundingClientRect();
-        const width = rect.width;
-        const height = rect.height;
-
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
-
-        const rX = ((mouseY / height) - 0.5) * ROTATION_RANGE * -1;
-        const rY = ((mouseX / width) - 0.5) * ROTATION_RANGE;
-
-        x.set(rX);
-        y.set(rY);
-    };
-
-    const handleMouseLeave = () => {
-        x.set(0);
-        y.set(0);
-        setIsHovered(false);
-    };
-
     return (
-        <div className="relative pl-8 md:pl-16 group/timeline">
-            {/* Timeline Dot & Connector - Outside the 3D card context */}
-            <div className="absolute left-[2px] top-8 flex flex-col items-center h-full">
-                {/* Dot */}
-                <div
-                    className={cn(
-                        "w-4 h-4 rounded-full border-2 bg-deep-space z-10 transition-all duration-500",
-                        isHovered ? "scale-125 shadow-[0_0_20px_var(--exp-color)] border-[var(--exp-color)]" : "border-white/20"
-                    )}
-                    style={{ "--exp-color": exp.color } as React.CSSProperties}
-                >
-                    <div className={cn(
-                        "w-full h-full rounded-full transition-opacity duration-500",
-                        isHovered ? "bg-[var(--exp-color)] opacity-100" : "bg-white opacity-0"
-                    )} />
-                </div>
-                {/* Line Segment */}
-                <div className="w-[2px] h-full bg-white/5 mt-2 relative overflow-hidden">
-                    <div className={cn(
-                        "absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[var(--exp-color)] to-transparent transition-transform duration-700",
-                        isHovered ? "translate-y-0" : "-translate-y-full"
-                    )}
-                        style={{ "--exp-color": exp.color } as React.CSSProperties}
-                    />
-                </div>
-            </div>
-
-            {/* Glowing Connection Beam */}
-            <div className={cn(
-                "absolute left-[18px] top-10 h-[2px] bg-gradient-to-r from-[var(--exp-color)] to-transparent transition-all duration-500 z-0",
-                isHovered ? "w-16 md:w-24 opacity-100" : "w-0 opacity-0"
-            )}
-                style={{ "--exp-color": exp.color } as React.CSSProperties}
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            className="group relative flex flex-col md:flex-row gap-4 md:gap-12 py-8 md:py-12 border-b border-white/10 last:border-0 transition-all duration-500 hover:!opacity-100 hover:bg-white/[0.02] px-4 md:px-8 -mx-4 md:-mx-8 rounded-2xl cursor-default"
+        >
+            {/* Subtle Hover Glow */}
+            <div 
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-2xl"
+                style={{
+                    background: `radial-gradient(600px circle at 0% 50%, ${exp.color}08, transparent 60%)`
+                }}
             />
 
-            {/* 3D Holographic Card */}
-            <motion.div
-                ref={ref}
-                onMouseMove={handleMouseMove}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={handleMouseLeave}
-                style={{ transformStyle: "preserve-3d", transform }}
-                className="relative min-h-[300px] w-full rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md overflow-hidden group/card cursor-default"
-            >
-                {/* Dynamic Background Gradient */}
-                <div
-                    className="absolute inset-0 opacity-0 group-hover/card:opacity-20 transition-opacity duration-500 bg-gradient-to-br from-[var(--exp-color)] via-transparent to-transparent pointer-events-none"
-                    style={{ "--exp-color": exp.color } as React.CSSProperties}
-                />
+            {/* Left Column: Timeline & Company */}
+            <div className="w-full md:w-1/4 shrink-0 z-10 pt-1">
+                <p className="text-sm font-mono text-white/40 mb-2 transition-colors duration-300 group-hover:text-white/70 whitespace-pre-line">
+                    {exp.periodDetail || exp.period}
+                </p>
+                <h4 className="text-xl font-display font-medium text-white/90 mb-2 flex items-center gap-2 group-hover:text-white transition-colors duration-300">
+                    {exp.company}
+                    <ArrowUpRight className="w-4 h-4 opacity-0 -translate-x-2 translate-y-2 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-300 text-white/50" />
+                </h4>
+                <p className="text-sm text-white/40 flex items-center gap-1.5 transition-colors duration-300 group-hover:text-white/60">
+                    <MapPin className="w-3.5 h-3.5" /> {exp.location}
+                </p>
+            </div>
 
-                {/* Content Container */}
-                <div
-                    style={{ transform: "translateZ(50px)", transformStyle: "preserve-3d" }}
-                    className="relative p-6 md:p-8 h-full flex flex-col"
+            {/* Right Column: Role & Details */}
+            <div className="w-full md:w-3/4 z-10">
+                <h3 
+                    className="text-2xl font-bold text-white mb-4 transition-colors duration-300"
+                    style={{ color: isHovered ? exp.color : "white" }}
                 >
-                    {/* Header */}
-                    <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-8">
-                        <div>
-                            <h3 className="text-2xl font-bold text-white mb-2 group-hover/card:text-[var(--exp-color)] transition-colors"
-                                style={{ "--exp-color": exp.color } as React.CSSProperties}
-                            >
-                                {exp.role}
-                            </h3>
-                            <h4 className="text-lg text-white/70 font-medium flex items-center gap-2">
-                                {exp.company}
-                                <span className="w-1 h-1 rounded-full bg-white/30" />
-                                <span className="text-sm font-normal text-white/40 flex items-center gap-1">
-                                    <MapPin className="w-3 h-3" /> {exp.location}
-                                </span>
-                            </h4>
-                        </div>
-
-                        <div className="flex flex-col items-end gap-2">
-                            <span className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-cyan-100/80 flex items-center gap-2">
-                                <Calendar className="w-3.5 h-3.5" />
-                                {exp.periodDetail || exp.period}
-                            </span>
-                        </div>
-                    </div>
-
-                    {/* Description List */}
-                    <ul className="space-y-4 flex-grow">
-                        {exp.description.map((item, i) => (
-                            <li
-                                key={i}
-                                className="flex items-start gap-4 text-white/60 leading-relaxed text-sm md:text-base group/item"
-                            >
-                                <span
-                                    className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0 transition-colors duration-300 group-hover/item:bg-[var(--exp-color)] group-hover/item:shadow-[0_0_8px_var(--exp-color)] bg-white/20"
-                                    style={{ "--exp-color": exp.color } as React.CSSProperties}
-                                />
-                                <span className="group-hover/item:text-white/90 transition-colors duration-300">
-                                    {item}
-                                </span>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-
-                {/* Holographic Overlays */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 pointer-events-none rounded-2xl" />
-
-                {/* Scanner Light Effect */}
-                <div
-                    className="absolute top-0 left-[-100%] w-[50%] h-full bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 group-hover/card:animate-shine pointer-events-none"
-                    style={{ transitionDuration: '1s' }}
-                />
-            </motion.div>
-        </div>
+                    {exp.role}
+                </h3>
+                <ul className="space-y-4">
+                    {exp.description.map((item, i) => (
+                        <li key={i} className="flex items-start gap-4 text-white/50 text-base leading-relaxed transition-colors duration-300 group-hover:text-white/80">
+                            <span 
+                                className="mt-2.5 w-1.5 h-1.5 rounded-full bg-white/20 transition-all duration-300 flex-shrink-0"
+                                style={{ 
+                                    backgroundColor: isHovered ? exp.color : "rgba(255,255,255,0.2)",
+                                    boxShadow: isHovered ? `0 0 10px ${exp.color}` : "none" 
+                                }}
+                            />
+                            <span>{item}</span>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </motion.div>
     );
 }
 
@@ -202,23 +114,19 @@ export default function Experience() {
                 <SectionHeading
                     title="Experience"
                     subtitle="Professional journey & milestones"
-                    className="mb-16 md:mb-24"
+                    className="mb-16 md:mb-20"
                 />
 
-                <div className="relative max-w-5xl mx-auto">
-                    {/* Main Background Timeline Line (Fadeder) */}
-                    <div className="absolute left-[9px] top-0 bottom-0 w-[2px] bg-white/5" />
-
-                    <div className="space-y-12 md:space-y-20">
-                        {experiences.map((exp, index) => (
-                            <ExperienceCard key={index} exp={exp} index={index} />
-                        ))}
-                    </div>
+                {/* The hover:[&>div]:opacity-40 dims all unhovered siblings */}
+                <div className="group/list hover:[&>div]:opacity-30 transition-opacity duration-500">
+                    {experiences.map((exp, index) => (
+                        <ExperienceRow key={index} exp={exp} index={index} />
+                    ))}
                 </div>
             </div>
 
             {/* Background Decoration */}
-            <div className="absolute top-1/2 left-0 w-1/3 h-1/2 bg-primary/5 rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
+            <div className="absolute top-1/2 left-0 w-1/3 h-1/2 bg-cyan-500/5 rounded-full blur-[150px] -translate-y-1/2 pointer-events-none" />
         </section>
     );
 }
