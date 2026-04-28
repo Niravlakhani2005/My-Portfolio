@@ -14,14 +14,6 @@ const projects = [
         image: "/projects/qonaq-uhd.png",
     },
     {
-        title: "Healthy Bharat",
-        description: "A secure and comprehensive mobile app design for healthcare, bridging the gap between patients, doctors, and labs with a modern dark-themed UI.",
-        tags: ["Mobile App", "UI/UX", "Healthcare", "Figma"],
-        link: "/projects/healthy-bharat",
-        color: "#10b981",
-        image: "/projects/healthy-bharat-thumbnail.png",
-    },
-    {
         title: "Luumpa",
         description: "Vibrant landing page design featuring an interactive 3D soda can animation and energetic branding.",
         tags: ["3D Animation", "Figma", "Web Design", "Landing Page"],
@@ -36,6 +28,14 @@ const projects = [
         link: "/projects/cantech",
         color: "#06b6d4",
         image: "/projects/cantech-v5-final.png",
+    },
+    {
+        title: "Healthy Bharat",
+        description: "A secure and comprehensive mobile app design for healthcare, bridging the gap between patients, doctors, and labs with a modern dark-themed UI.",
+        tags: ["Mobile App", "UI/UX", "Healthcare", "Figma"],
+        link: "/projects/healthy-bharat",
+        color: "#10b981",
+        image: "/projects/healthy-bharat-thumbnail.png",
     },
     {
         title: "Event Booking App",
